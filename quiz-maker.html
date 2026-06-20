@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quizly — Online Quiz Maker for Smart Learning</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel ="stylesheet" href ="style.css">
+</head>
+<body>
+
+<div class="decor" aria-hidden="true">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="blob blob-4"></div>
+  <div class="ring-decor"></div>
+</div>
+
+<header>
+  <nav class="nav container" style="padding-left:0; padding-right:0;">
+    <a href="#" class="logo">
+      <span class="logo-mark">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#F2E5AD" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      Quizly
+    </a>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#categories">Categories</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="btn btn-text">Log In</button>
+      <button class="btn btn-primary">Sign Up</button>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu"><span></span></button>
+    </div>
+  </nav>
+  <div class="mobile-panel" id="mobilePanel">
+    <a href="#home">Home</a>
+    <a href="#categories">Categories</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+    <div class="mobile-actions">
+      <button class="btn btn-outline">Log In</button>
+      <button class="btn btn-primary">Sign Up</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <div class="hero-grid">
+    <div>
+      <span class="eyebrow"><span class="dot"></span> Built for educators &amp; teams</span>
+      <h1>Online Quiz Maker Tailored for <em>Smart Learning</em></h1>
+      <p class="subtitle">Create engaging quizzes, test knowledge, and analyze results with ease.</p>
+      <div class="hero-cta">
+        <button class="btn btn-hero" id="startQuizBtn">
+          Start Quiz
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="hero-meta">
+          <div class="stack-avatars">
+            <span style="background:var(--teal-900)">JL</span>
+            <span style="background:var(--coral)">RN</span>
+            <span style="background:var(--sage)">AK</span>
+          </div>
+          12,400+ quizzes created
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div><b>30</b><span>Sample questions</span></div>
+        <div><b>9</b><span>Topic categories</span></div>
+        <div><b>98%</b><span>Learner satisfaction</span></div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="scan-card">
+        <div class="scan-card-head">
+          <span class="tag-mini">JAVASCRIPT</span>
+          <span class="qnum">Q09 / 30</span>
+        </div>
+        <p class="scan-q">Which keyword declares a constant in JavaScript?</p>
+        <div class="scan-opt"><span class="bub">A</span><span class="txt">var</span></div>
+        <div class="scan-opt"><span class="bub">B</span><span class="txt">let</span></div>
+        <div class="scan-opt correct"><span class="bub">C</span><span class="txt">const</span></div>
+        <div class="scan-opt"><span class="bub">D</span><span class="txt">define</span></div>
+      </div>
+      <div class="float-chip chip-score">98%<small>Avg. accuracy</small></div>
+      <div class="float-chip chip-time">⏱ 12:45 left</div>
+    </div>
+  </div>
+</section>
+
+<section class="quiz-section" id="categories">
+  <div class="section-head">
+    <span class="eyebrow"><span class="dot"></span> Live Preview</span>
+    <h2>Try a Sample Quiz</h2>
+    <p>30 questions across General Knowledge, Computer Science, HTML, CSS, JavaScript, Python, Databases, Networking &amp; Technology.</p>
+  </div>
+
+  <div class="quiz-card" id="quizCard">
+
+    <div id="quizView">
+      <div class="quiz-card-top">
+        <div class="qc-row">
+          <span class="tag" id="qCategory">General Knowledge</span>
+          <span class="qc-counter" id="qCounter">Question 1 of 30</span>
+        </div>
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+        <div class="progress-pct" id="qPercent">3% complete</div>
+      </div>
+
+      <div class="quiz-card-body" id="quizCardBody">
+        <p class="question-text" id="questionText">Loading question...</p>
+        <div class="options" id="optionsContainer"></div>
+      </div>
+
+      <div class="quiz-card-footer">
+        <button class="btn-prev" id="prevBtn" disabled>← Previous</button>
+        <button class="btn btn-next" id="nextBtn" disabled>Next</button>
+      </div>
+    </div>
+
+    <div class="score-view" id="scoreView">
+      <span class="score-badge">QUIZ COMPLETE</span>
+      <h2>Nice work! Here's how you did.</h2>
+      <p class="lead">Your results, broken down by category.</p>
+
+      <div class="ring-wrap">
+        <svg width="200" height="200" viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="84" fill="none" stroke="rgba(15,76,92,0.1)" stroke-width="16"/>
+          <circle id="ringProgress" cx="100" cy="100" r="84" fill="none" stroke="#0F4C5C" stroke-width="16" stroke-linecap="round" stroke-dasharray="527.8" stroke-dashoffset="527.8"/>
+        </svg>
+        <div class="ring-center">
+          <b id="ringPercent">0%</b>
+          <span>SCORE</span>
+        </div>
+      </div>
+
+      <div class="score-stats">
+        <div class="stat-box"><b id="statTotal">0/30</b><span>TOTAL SCORE</span></div>
+        <div class="stat-box correct"><b id="statCorrect">0</b><span>CORRECT</span></div>
+        <div class="stat-box incorrect"><b id="statIncorrect">0</b><span>INCORRECT</span></div>
+      </div>
+
+      <div class="score-actions">
+        <button class="btn btn-outline" id="reviewBtn">Review Answers</button>
+        <button class="btn btn-primary" id="retakeBtn">Retake Quiz</button>
+      </div>
+
+      <div class="cat-breakdown">
+        <h3>Performance by Category</h3>
+        <div id="catBreakdown"></div>
+      </div>
+
+      <div class="review-list" id="reviewList"></div>
+    </div>
+
+  </div>
+</section>
+
+<footer id="about">
+  <div class="footer-inner container" style="padding:0;">
+    <a href="#" class="logo">
+      <span class="logo-mark">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#F2E5AD" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      Quizly
+    </a>
+    <p>Quizzes that make learning measurable.</p>
+    <div class="footer-links" id="contact">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script src ="script.js"></script>>
+</body>
+</html>
